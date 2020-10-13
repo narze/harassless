@@ -1,6 +1,6 @@
 import { Dataset } from '../dataset/interface'
 
-export function checker(dataset: Dataset[], input: string) {
+export function checker(dataset: Dataset[], input: string): Dataset[] {
   const out = []
 
   dataset.forEach((data: Dataset) => {
