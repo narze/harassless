@@ -3,6 +3,8 @@ import { jsx } from '@emotion/core'
 import tw from '@tailwindcssinjs/macro'
 import { Button, Textarea } from '@chakra-ui/core'
 import { useState } from 'react'
+import { checker } from '../utils/checker'
+import dataset from '../dataset'
 
 const styles = {
   subtitle: tw`
@@ -19,17 +21,6 @@ const styles = {
   `,
 }
 
-const dataset = [
-  {
-    type: 'Sexual Harassment',
-    words: ['ห อ ม', 'คือลือ', 'ข อ บ คุ ณ ค รั บ'],
-  },
-  {
-    type: 'Ableist Language',
-    words: ['ปสด', 'ประสาทแดก'],
-  },
-]
-
 const initialInput = [
   'คือลือ',
   'ห อ ม',
@@ -43,19 +34,7 @@ export const Home = (): JSX.Element => {
   const [output, setOutput] = useState([])
 
   function check() {
-    const out = []
-
-    dataset.forEach((data) => {
-      data.words.forEach((word) => {
-        if (input.includes(word)) {
-          out.push({
-            word,
-            type: data.type,
-          })
-        }
-      })
-    })
-
+    const out = checker(dataset, input)
     setOutput(out)
   }
 
